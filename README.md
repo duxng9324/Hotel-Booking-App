@@ -12,7 +12,7 @@ A responsive web application that allows users to search, view, and book hotel r
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** ReactJS, Ant Design, JavaScript, CSS
+- **Frontend:** ReactJS, Ant Design, JavaScript, SCSS
 - **Routing:** React Router
 - **State Management:** useState, useEffect
 - **Data:** Simulated with static JSON (can be replaced with API)
