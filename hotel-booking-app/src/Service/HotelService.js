@@ -11,3 +11,4 @@ export const getHotelByID = async (id) =>{
 export const getRating = async () =>{
     return await get(`hotels`);
 }
+

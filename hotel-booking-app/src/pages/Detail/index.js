@@ -14,7 +14,7 @@ function Detail() {
     const param = useParams();
     const [form] = Form.useForm();
     const [time, setTime] = useState();
-    const [selectedRoomTypeId, setSelectedRoomTypeId] = useState(null); 
+    const [selectedRoomTypeId, setSelectedRoomTypeId] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,8 +37,8 @@ function Detail() {
     };
 
     const handleBookRoom = (id) => {
-        setSelectedRoomTypeId(id); 
-        form.submit(); 
+        setSelectedRoomTypeId(id);
+        form.submit();
     };
 
     const handleFormSubmit = () => {
@@ -49,7 +49,6 @@ function Detail() {
                 roomTypeId: selectedRoomTypeId,
                 date: formattedDates,
             };
-
             navigate("/payment", { state: { bookingData } });
         }
     };
@@ -61,69 +60,83 @@ function Detail() {
             title: 'Loại chỗ nghỉ',
             dataIndex: 'name',
             key: 'name',
+            render: (text) => text || "Chưa xác định",
         },
         {
             title: 'Số lượng giường',
             dataIndex: 'quantityBed',
             key: 'quantityBed',
+            render: (value) => value !== undefined ? value : "Chưa xác định",
         },
         {
             title: 'Số lượng khách',
             dataIndex: 'quantityPeople',
             key: 'quantityPeople',
+            render: (value) => value !== undefined ? value : "Chưa xác định",
         },
         {
             title: 'Diện tích',
             dataIndex: 'roomArea',
             key: 'roomArea',
-            render: roomArea => (<div>{roomArea} m²</div>),
+            render: (roomArea) => roomArea !== undefined ? `${roomArea} m²` : "Chưa xác định",
+        },
+        {
+            title: 'Phòng trống',
+            dataIndex: 'availableRooms',
+            key: 'availableRooms',
+            render: (availableRooms) => availableRooms !== undefined ? availableRooms : "Chưa xác định",
         },
         {
             title: 'Các tiện nghi',
             dataIndex: 'amenities',
             key: 'amenities',
-            render: amenities => (
+            render: (amenities) => (
                 <div>
-                    {amenities && amenities.map((item) => (
-                        <Tag key={item.id || item.name} color="processing">
-                            {item.name}
-                        </Tag>
-                    ))}
+                    {Array.isArray(amenities) && amenities.length > 0 ? (
+                        amenities.map((item) => (
+                            <Tag key={item.id || item.name} color="processing">
+                                {item.name || "Tiện ích không xác định"}
+                            </Tag>
+                        ))
+                    ) : (
+                        <span>Không có tiện ích</span>
+                    )}
                 </div>
             ),
         },
         {
-            title: 'Giá ',
+            title: 'Giá',
             dataIndex: 'price',
             key: 'price',
-            render: price => (<div>{price} VND</div>),
+            render: (price) => price !== undefined ? `${price.toLocaleString('vi-VN')} VND` : "Chưa xác định",
         },
         {
+            title: 'Hành động',
             dataIndex: 'id',
-            render: (id) => (
-                <Tooltip title={time ? null : 'Hãy chọn ngày đặt trước !!!'}>
+            key: 'action',
+            render: (id, record) => (
+                <Tooltip title={(!time && "Hãy chọn ngày đặt trước!") || (record.availableRooms === 0 && "Hết phòng trống!")}>
                     <Button
                         type="primary"
-                        disabled={!time}
+                        disabled={!time || record.availableRooms === 0}
                         onClick={() => handleBookRoom(id)}
                     >
                         Đặt ngay
                     </Button>
                 </Tooltip>
             ),
-            key: 'action',
         },
     ];
 
     return (
         <>
             {!data ? (
-                <div>loading</div>
+                <div>Đang tải...</div>
             ) : (
                 <>
                     <h1 className="title">{data.name} <StarRating rate={data.rate} /></h1>
                     <div className="address">
-                        <a href={data.linkMap} target="blank">
+                        <a href={data.linkMap} target="_blank" rel="noopener noreferrer">
                             <FaLocationDot style={{ marginRight: "10px" }} />
                             {data.address}
                         </a>
@@ -146,7 +159,7 @@ function Detail() {
                                         <div className="box-evaluate__2">
                                             <div>
                                                 <div className="type">VIP</div>
-                                                <div className='quantity-review'>lượt đánh giá</div>
+                                                <div className='quantity-review'>Lượt đánh giá</div>
                                             </div>
                                             <div className="rateStar">{data.rate} sao</div>
                                         </div>
@@ -154,7 +167,7 @@ function Detail() {
                                         <div className="box-evaluate__2">
                                             <div>
                                                 <div className="type">Thường</div>
-                                                <div className='quantity-review'>lượt đánh giá</div>
+                                                <div className='quantity-review'>Lượt đánh giá</div>
                                             </div>
                                             <div className="rateStar">{data.rate} sao</div>
                                         </div>
@@ -163,7 +176,7 @@ function Detail() {
                             </div>
                             <iframe
                                 className="map"
-                                title="bản đồ"
+                                title="Bản đồ"
                                 src={data.linkMap}
                                 allowFullScreen={true}
                                 referrerPolicy="no-referrer-when-downgrade"
@@ -176,22 +189,30 @@ function Detail() {
                     <Row gutter={[30, 20]}>
                         <Col xxl={16} xl={16} lg={16} md={24} sm={24} span={24}>
                             <div className="description">
-                                {data.description}
+                                <p>Khách sạn Sunrise Ocean tọa lạc ngay trung tâm thành phố, chỉ cách bãi biển vài bước chân, mang đến không gian kiến trúc hiện đại, sang trọng cùng tầm nhìn hướng biển tuyệt đẹp.</p>
+                                <p>Với nhiều hạng phòng từ Standard, Deluxe đến Suite, mỗi phòng được thiết kế tinh tế, thoáng đãng và trang bị đầy đủ tiện nghi như điều hòa, TV màn hình phẳng, minibar, két an toàn cá nhân và Wi-Fi tốc độ cao, bạn sẽ có trải nghiệm nghỉ dưỡng thoải mái và đẳng cấp.</p>
+                                <p>Khách sạn còn sở hữu hồ bơi ngoài trời, phòng gym & spa, nhà hàng phục vụ ẩm thực địa phương và quốc tế, quầy bar trên tầng thượng cùng dịch vụ phòng 24/7 và đưa đón sân bay (có phụ phí).</p>
+                                <p>Đội ngũ nhân viên thân thiện, chuyên nghiệp luôn sẵn sàng hỗ trợ check-in/check-out nhanh chóng, tư vấn và đặt tour tham quan cho khách.</p>
+                                <p>Đặc biệt, bạn sẽ được hưởng ưu đãi giảm 10% khi đặt phòng trước 30 ngày và miễn phí bữa sáng buffet cho trẻ em dưới 6 tuổi, cùng nhiều combo nghỉ dưỡng + spa tiết kiệm.</p>
                             </div>
                             <div>
-                                <h3>Các tiện nghi được ưa chuộng nhất </h3>
+                                <h3>Các tiện nghi được ưa chuộng nhất</h3>
                                 <div className="service">
                                     <Flex gap="4px 0" wrap>
-                                        {data.service && data.service.map((item) => (
-                                            <Tag
-                                                key={item.id || item}
-                                                className="service__item"
-                                                icon={<CheckCircleOutlined />}
-                                                color="processing"
-                                            >
-                                                {item}
-                                            </Tag>
-                                        ))}
+                                        {Array.isArray(data.service) && data.service.length > 0 ? (
+                                            data.service.map((item) => (
+                                                <Tag
+                                                    key={item.id || item}
+                                                    className="service__item"
+                                                    icon={<CheckCircleOutlined />}
+                                                    color="processing"
+                                                >
+                                                    {item}
+                                                </Tag>
+                                            ))
+                                        ) : (
+                                            <span>Không có dịch vụ</span>
+                                        )}
                                     </Flex>
                                 </div>
                             </div>
