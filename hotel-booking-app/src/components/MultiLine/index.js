@@ -13,13 +13,39 @@ import {
 
 ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Legend, CategoryScale);
 
-const MultiLine = () => {
+const MultiLine = ({ bookings }) => {
+  // Chuyển đổi dữ liệu bookings thành số lượng đặt phòng theo tháng
+  const calculateMonthlyBookings = (bookings) => {
+    if (!bookings || bookings.length === 0) {
+      return Array(12).fill(0); // Trả về mảng 0 nếu không có dữ liệu
+    }
+
+    const monthlyCount = Array(12).fill(0); // Mảng 12 tháng (0-based: 0 = Jan, 1 = Feb, ...)
+    const currentYear = new Date().getFullYear(); // 2025
+
+    bookings.forEach((booking) => {
+      const checkInDate = booking.date[0]; // "dd/mm/yyyy"
+      const [day, month, year] = checkInDate.split('/');
+      if (parseInt(year) === currentYear) {
+        const monthIndex = parseInt(month) - 1; // Chuyển sang 0-based (Jan = 0)
+        if (monthIndex >= 0 && monthIndex < 12) {
+          monthlyCount[monthIndex] += 1;
+        }
+      }
+    });
+
+    return monthlyCount;
+  };
+
+  const monthlyData = calculateMonthlyBookings(bookings);
+  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    labels,
     datasets: [
       {
         label: 'Đặt phòng 2025',
-        data: [30, 45, 60, 50, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: monthlyData,
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1,

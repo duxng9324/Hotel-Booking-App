@@ -1,22 +1,23 @@
-import { Col, Form, Row, Input, Button, InputNumber, Select, Tabs, Upload, TimePicker } from 'antd'
+import { Col, Form, Row, Input, Button, InputNumber, Select, Tabs, Upload, TimePicker, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import './CreateRoom.scss';
-import { createRoom } from '../../Service/RoomService';
-import { useState } from 'react';
-import moment from 'moment';
+import { createHotel, getHotelByID, getHotels } from '../../Service/HotelService';
+import { editHotel } from '../../Service/RoomService';
+import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+
 const { Option } = Select;
 const { TabPane } = Tabs;
 
 function CreateRoom() {
-  const [formRoom] = Form.useForm();
   const [formHotel] = Form.useForm();
-  const [hotels, setHotels] = useState([
-    { id: '111abc', name: 'Ocean Breeze Hotel' },
-    // Thêm khách sạn khác nếu cần
-  ]);
+  const [formRoom] = Form.useForm();
+  const [hotels, setHotels] = useState([]);
   const [selectedHotel, setSelectedHotel] = useState(null);
+  const [isLoadingHotel, setIsLoadingHotel] = useState(false);
+  const [isLoadingRoom, setIsLoadingRoom] = useState(false);
 
-  // Danh sách tiện ích mẫu dựa trên JSON
+  // Danh sách tiện ích mẫu
   const availableAmenities = [
     { id: 'amenity1', name: 'Ban công' },
     { id: 'amenity2', name: 'View biển' },
@@ -32,10 +33,10 @@ function CreateRoom() {
     { id: 'amenity12', name: 'Máy sấy tóc' },
     { id: 'amenity13', name: 'Dép đi trong nhà' },
     { id: 'amenity14', name: 'Bình nước nóng' },
-    { id: 'amenity15', name: 'Rèm cản sáng' }
+    { id: 'amenity15', name: 'Rèm cản sáng' },
   ];
-  
-  // Danh sách dịch vụ mẫu dựa trên JSON
+
+  // Danh sách dịch vụ mẫu
   const availableServices = [
     'Xe đưa đón sân bay',
     'Phòng gia đình',
@@ -56,9 +57,24 @@ function CreateRoom() {
     'Trợ giúp đặc biệt (concierge)',
     'Dịch vụ trông trẻ',
     'Wi-Fi miễn phí toàn khách sạn',
-    'Dọn phòng hàng ngày'
+    'Dọn phòng hàng ngày',
   ];
-  
+
+  // Tải danh sách khách sạn từ HotelService
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const response = await getHotels();
+        const hotelList = Array.isArray(response) ? response : response.data || [];
+        setHotels(hotelList.map(item => ({ id: item.id, name: item.name })));
+      } catch (error) {
+        console.error('Lỗi khi tải danh sách khách sạn:', error);
+        message.error('Không thể tải danh sách khách sạn');
+      }
+    };
+    fetchHotels();
+  }, []);
+
   const rules = [
     {
       required: true,
@@ -66,47 +82,64 @@ function CreateRoom() {
     },
   ];
 
+  const urlRule = [
+    {
+      type: 'url',
+      message: 'Vui lòng nhập URL hợp lệ!',
+    },
+  ];
+
+  const handleNormFile = (e) => {
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
+
   const handleCreateHotel = async (values) => {
+    setIsLoadingHotel(true);
     const hotelData = {
       id: `hotel-${Date.now()}`,
       name: values.name,
-      thumbnail: values.thumbnail?.file?.response?.url || '',
+      thumbnail: values.thumbnail?.[0]?.response?.url || '',
       address: values.address,
-      linkMap: values.linkMap,
-      description: values.description,
-      rate: values.rate,
-      checkInTime: values.checkInTime ? moment(values.checkInTime).format('HH:mm') : '',
-      checkOutTime: values.checkOutTime ? moment(values.checkOutTime).format('HH:mm') : '',
+      linkMap: values.linkMap || '',
+      description: values.description || '',
+      rate: values.rate || 0,
+      checkInTime: values.checkInTime ? dayjs(values.checkInTime).format('HH:mm') : '',
+      checkOutTime: values.checkOutTime ? dayjs(values.checkOutTime).format('HH:mm') : '',
       service: values.service || [],
-      images: values.images?.fileList?.map((file) => file.response?.url || file.url) || [],
-      roomTypes: [], // Khởi tạo mảng rỗng cho roomTypes
+      images: values.images?.map((file) => file.response?.url || file.url) || [],
+      roomTypes: [],
     };
 
-    // Giả lập gọi API createHotel
     try {
-      // Thay bằng API thật: const response = await createHotel(hotelData);
-      const response = { success: true, data: hotelData }; // Mock response
-      if (response.success) {
+      const response = await createHotel(hotelData);
+      if (response) {
         setHotels([...hotels, { id: hotelData.id, name: hotelData.name }]);
         setSelectedHotel(hotelData.id);
-        alert('Thêm khách sạn thành công');
+        message.success('Thêm khách sạn thành công');
         formHotel.resetFields();
       } else {
-        alert('Thêm khách sạn thất bại');
+        message.error(`Thêm khách sạn thất bại: ${response.message || 'Lỗi không xác định'}`);
       }
     } catch (error) {
-      alert('Lỗi khi thêm khách sạn');
+      console.error('Lỗi khi tạo khách sạn:', error);
+      message.error(`Lỗi hệ thống: ${error.message}`);
+    } finally {
+      setIsLoadingHotel(false);
     }
   };
 
   const handleCreateRoom = async (values) => {
     if (!selectedHotel) {
-      alert('Vui lòng chọn hoặc tạo khách sạn trước!');
+      message.warning('Vui lòng chọn khách sạn trước!');
       return;
     }
 
+    setIsLoadingRoom(true);
     const roomData = {
-      id: `room-${Date.now()}`,
+      id: `${selectedHotel}-${Date.now()}`,
       name: values.name,
       quantityBed: values.quantityBed,
       quantityPeople: values.quantityPeople,
@@ -116,26 +149,45 @@ function CreateRoom() {
       amenities: values.amenities.map((amenityId) => ({
         id: `amenity-${Date.now()}-${amenityId}`,
         name: availableAmenities.find((a) => a.id === amenityId)?.name || amenityId,
-        roomTypeId: `room-${Date.now()}`,
+        roomTypeId: `${selectedHotel}-${Date.now()}`,
       })),
       hotelId: selectedHotel,
     };
 
-    const response = await createRoom(roomData);
-    if (response) {
-      alert('Thêm phòng thành công');
-      formRoom.resetFields();
-      setSelectedHotel(null); // Reset lựa chọn khách sạn
-    } else {
-      alert('Thêm phòng thất bại');
+    try {
+      // Lấy dữ liệu khách sạn hiện tại
+      const hotelResponse = await getHotelByID(selectedHotel);
+      const hotelData = hotelResponse.data || hotelResponse;
+      
+      // Thêm roomData vào mảng roomTypes hiện tại
+      const updatedRoomTypes = [...(hotelData.roomTypes || []), roomData];
+      
+      // Cập nhật khách sạn với roomTypes mới
+      const response = await editHotel(selectedHotel, { roomTypes: updatedRoomTypes });
+      if (response) {
+        message.success('Thêm phòng thành công');
+        formRoom.resetFields();
+        // Làm mới danh sách khách sạn
+        const updatedHotels = await getHotels();
+        setHotels((Array.isArray(updatedHotels) ? updatedHotels : updatedHotels.data || []).map(item => ({ id: item.id, name: item.name })));
+      } else {
+        message.error(`Thêm phòng thất bại: ${response.message || 'Lỗi không xác định'}`);
+      }
+    } catch (error) {
+      console.error('Lỗi khi tạo phòng:', error);
+      message.error(`Lỗi hệ thống: ${error.message}`);
+    } finally {
+      setIsLoadingRoom(false);
     }
   };
 
-  const normFile = (e) => {
-    if (Array.isArray(e)) {
-      return e;
+  // Xử lý phản hồi từ server khi upload
+  const handleUploadChange = ({ file }) => {
+    if (file.status === 'done') {
+      message.success(`${file.name} tải lên thành công!`);
+    } else if (file.status === 'error') {
+      message.error(`${file.name} tải lên thất bại: ${file.error?.message || 'Lỗi không xác định'}`);
     }
-    return e && e.fileList;
   };
 
   return (
@@ -155,10 +207,16 @@ function CreateRoom() {
                   label="Hình ảnh đại diện"
                   name="thumbnail"
                   valuePropName="fileList"
-                  getValueFromEvent={normFile}
+                  getValueFromEvent={handleNormFile}
                   rules={[{ required: false }]}
                 >
-                  <Upload name="thumbnail" action="/upload" listType="picture">
+                  <Upload
+                    name="file" // Phải khớp với field name mà backend mong đợi
+                    action="http://localhost:5000/api/upload" // Thay bằng URL của server
+                    listType="picture"
+                    maxCount={1}
+                    onChange={handleUploadChange}
+                  >
                     <Button icon={<UploadOutlined />}>Tải lên hình ảnh</Button>
                   </Upload>
                 </Form.Item>
@@ -169,33 +227,77 @@ function CreateRoom() {
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="Link bản đồ" name="linkMap" rules={[{ required: false }]}>
+                <Form.Item
+                  label="Link bản đồ"
+                  name="linkMap"
+                  rules={[{ required: false }, ...urlRule]}
+                >
                   <Input placeholder="Ví dụ: https://www.google.com/maps/..." />
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="Mô tả" name="description" rules={[{ required: false }]}>
-                  <Input.TextArea showCount maxLength={2000} placeholder="Mô tả chi tiết về khách sạn" />
+                <Form.Item
+                  label="Mô tả"
+                  name="description"
+                  rules={[{ required: false }]}
+                >
+                  <Input.TextArea
+                    showCount
+                    maxLength={2000}
+                    placeholder="Mô tả chi tiết về khách sạn"
+                    autoSize={{ minRows: 4, maxRows: 6 }}
+                  />
                 </Form.Item>
               </Col>
-              <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Đánh giá" name="rate" rules={rules}>
-                  <InputNumber min={0} max={5} step={0.1} placeholder="Ví dụ: 5.0" />
-                </Form.Item>
-              </Col>
-              <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Giờ check-in" name="checkInTime" rules={[{ required: false }]}>
-                  <TimePicker format="HH:mm" placeholder="Chọn giờ" />
-                </Form.Item>
-              </Col>
-              <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Giờ check-out" name="checkOutTime" rules={[{ required: false }]}>
-                  <TimePicker format="HH:mm" placeholder="Chọn giờ" />
-                </Form.Item>
+              {/* Đặt Đánh giá, Giờ check-in, Giờ check-out trên cùng một dòng */}
+              <Col span={24}>
+                <Row gutter={[20, 20]}>
+                  <Col span={24} xxl={8} xl={8} lg={8} md={24}>
+                    <Form.Item label="Đánh giá" name="rate" rules={rules}>
+                      <InputNumber
+                        min={0}
+                        max={5}
+                        step={0.1}
+                        placeholder="Ví dụ: 5.0"
+                        style={{ width: "100%" }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24} xxl={8} xl={8} lg={8} md={24}>
+                    <Form.Item
+                      label="Giờ check-in"
+                      name="checkInTime"
+                      rules={[{ required: false }]}
+                    >
+                      <TimePicker
+                        format="HH:mm"
+                        placeholder="Chọn giờ"
+                        style={{ width: "100%" }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24} xxl={8} xl={8} lg={8} md={24}>
+                    <Form.Item
+                      label="Giờ check-out"
+                      name="checkOutTime"
+                      rules={[{ required: false }]}
+                    >
+                      <TimePicker
+                        format="HH:mm"
+                        placeholder="Chọn giờ"
+                        style={{ width: "100%" }}
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
               </Col>
               <Col span={24}>
-                <Form.Item label="Dịch vụ" name="service" rules={[{ required: false }]}>
-                  <Select mode="multiple" placeholder="Chọn dịch vụ">
+                <Form.Item
+                  label="Dịch vụ"
+                  name="service"
+                  rules={[{ required: false }]}
+                >
+                  <Select mode="multiple" placeholder="Chọn dịch vụ" allowClear>
                     {availableServices.map((service) => (
                       <Option key={service} value={service}>
                         {service}
@@ -209,17 +311,27 @@ function CreateRoom() {
                   label="Hình ảnh khách sạn"
                   name="images"
                   valuePropName="fileList"
-                  getValueFromEvent={normFile}
+                  getValueFromEvent={handleNormFile}
                   rules={[{ required: false }]}
                 >
-                  <Upload name="images" action="/upload" listType="picture" multiple>
+                  <Upload
+                    name="file" // Phải khớp với field name mà backend mong đợi
+                    action="http://localhost:5000/api/upload" // Thay bằng URL của server
+                    listType="picture"
+                    multiple
+                    onChange={handleUploadChange}
+                  >
                     <Button icon={<UploadOutlined />}>Tải lên hình ảnh</Button>
                   </Upload>
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={isLoadingHotel}
+                  >
                     Tạo khách sạn
                   </Button>
                 </Form.Item>
@@ -235,6 +347,7 @@ function CreateRoom() {
                   <Select
                     placeholder="Chọn khách sạn"
                     onChange={(value) => setSelectedHotel(value)}
+                    allowClear
                   >
                     {hotels.map((hotel) => (
                       <Option key={hotel.id} value={hotel.id}>
@@ -255,28 +368,56 @@ function CreateRoom() {
                 </Form.Item>
               </Col>
               <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Số người tối đa" name="quantityPeople" rules={rules}>
+                <Form.Item
+                  label="Số người tối đa"
+                  name="quantityPeople"
+                  rules={rules}
+                >
                   <InputNumber min={1} placeholder="Ví dụ: 2" />
                 </Form.Item>
               </Col>
               <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Diện tích phòng (m²)" name="roomArea" rules={rules}>
+                <Form.Item
+                  label="Diện tích phòng (m²)"
+                  name="roomArea"
+                  rules={rules}
+                >
                   <InputNumber min={1} placeholder="Ví dụ: 45" />
                 </Form.Item>
               </Col>
               <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Giá (VND)" name="price" rules={rules}>
-                  <InputNumber min={0} step={1000} placeholder="Ví dụ: 1450000" />
+                <Form.Item
+                  label="Giá (VND)"
+                  name="price"
+                  rules={[
+                    { required: true, message: 'Vui lòng nhập giá!' },
+                    {
+                      type: 'number',
+                      min: 0,
+                      message: 'Giá phải lớn hơn hoặc bằng 0!',
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    min={0}
+                    step={1000}
+                    placeholder="Ví dụ: 1450000"
+                    style={{ width: '100%' }}
+                  />
                 </Form.Item>
               </Col>
               <Col span={24} xxl={12} xl={12} lg={12} md={24}>
-                <Form.Item label="Số phòng khả dụng" name="availableRooms" rules={rules}>
+                <Form.Item
+                  label="Số phòng khả dụng"
+                  name="availableRooms"
+                  rules={rules}
+                >
                   <InputNumber min={0} placeholder="Ví dụ: 5" />
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item label="Tiện ích" name="amenities" rules={rules}>
-                  <Select mode="multiple" placeholder="Chọn tiện ích">
+                  <Select mode="multiple" placeholder="Chọn tiện ích" allowClear>
                     {availableAmenities.map((amenity) => (
                       <Option key={amenity.id} value={amenity.id}>
                         {amenity.name}
@@ -287,7 +428,11 @@ function CreateRoom() {
               </Col>
               <Col span={24}>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={isLoadingRoom}
+                  >
                     Tạo phòng
                   </Button>
                 </Form.Item>

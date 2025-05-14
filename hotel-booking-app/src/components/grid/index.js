@@ -2,8 +2,9 @@ import { Col, Row } from 'antd';
 import './grid.scss';
 import MultiLine from '../MultiLine';
 import DemoRadar from '../Radar';
+import { useState, useEffect } from 'react';
+import { getAdditionalStats, getBookings, getFeedback, getNotifications, getRooms, getStats } from '../../Service/DashboardService';
 
-// StatsCard
 const StatsCard = ({ title, value, icon }) => {
   return (
     <div className="stats-card col">
@@ -16,14 +17,7 @@ const StatsCard = ({ title, value, icon }) => {
   );
 };
 
-// BookingTable
-const BookingTable = () => {
-  const bookings = [
-    { id: 1, customer: "John Doe", room: "Deluxe", checkIn: "2025-04-20", checkOut: "2025-04-25", status: "Confirmed" },
-    { id: 2, customer: "Jane Smith", room: "Suite", checkIn: "2025-04-22", checkOut: "2025-04-27", status: "Pending" },
-    { id: 3, customer: "Mike Johnson", room: "Standard", checkIn: "2025-04-23", checkOut: "2025-04-26", status: "Cancelled" },
-  ];
-
+const BookingTable = ({ bookings }) => {
   return (
     <div className="booking-table col box-8">
       <h3>Đặt phòng gần đây</h3>
@@ -39,24 +33,24 @@ const BookingTable = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking) => (
+          {bookings.slice(0, 3).map((booking) => (
             <tr key={booking.id}>
               <td>{booking.id}</td>
-              <td>{booking.customer}</td>
-              <td>{booking.room}</td>
-              <td>{booking.checkIn}</td>
-              <td>{booking.checkOut}</td>
+              <td>{booking.fullName || booking.customer}</td>
+              <td>{booking.room || 'N/A'}</td>
+              <td>{booking.date ? booking.date[0] : 'N/A'}</td>
+              <td>{booking.date ? booking.date[1] : 'N/A'}</td>
               <td>
                 <span
                   className={`status ${
-                    booking.status === "Confirmed"
-                      ? "status-confirmed"
-                      : booking.status === "Pending"
-                      ? "status-pending"
-                      : "status-cancelled"
+                    booking.status === 'Confirmed'
+                      ? 'status-confirmed'
+                      : booking.status === 'Pending'
+                      ? 'status-pending'
+                      : 'status-cancelled'
                   }`}
                 >
-                  {booking.status}
+                  {booking.status || 'N/A'}
                 </span>
               </td>
             </tr>
@@ -67,21 +61,14 @@ const BookingTable = () => {
   );
 };
 
-// AvailableRooms
-const AvailableRooms = () => {
-  const rooms = [
-    { id: 101, type: "Deluxe", status: "Available" },
-    { id: 102, type: "Suite", status: "Available" },
-    { id: 103, type: "Standard", status: "Available" },
-  ];
-
+const AvailableRooms = ({ rooms }) => {
   return (
     <div className="available-rooms col box-7">
       <h3>Phòng trống</h3>
       <ul>
         {rooms.map((room) => (
           <li key={room.id}>
-            Phòng {room.id} - {room.type}: <span className="status-available">{room.status}</span>
+            Phòng {room.id} - {room.type} 
           </li>
         ))}
       </ul>
@@ -89,75 +76,113 @@ const AvailableRooms = () => {
   );
 };
 
-// FeedbackSummary
-const FeedbackSummary = () => {
+const FeedbackSummary = ({ feedbackCount }) => {
   return (
     <div className="feedback-summary col box-9">
       <h3>Phản hồi khách hàng</h3>
-      <p>5 phản hồi mới cần xử lý.</p>
+      <p>{feedbackCount} phản hồi mới cần xử lý.</p>
     </div>
   );
 };
 
-// Notifications
-const Notifications = () => {
+const Notifications = ({ notificationCount }) => {
   return (
     <div className="notifications col box-10">
       <h3>Thông báo</h3>
-      <p>3 thông báo mới.</p>
+      <p>{notificationCount} thông báo mới.</p>
     </div>
   );
 };
 
-// AdditionalStats
-const AdditionalStats = () => {
+const AdditionalStats = ({ cancellationRate, occupancyRate }) => {
   return (
     <div className="additional-stats col box-11">
       <h3>Thống kê bổ sung</h3>
-      <p>Tỷ lệ hủy phòng: 10%</p>
+      <p>Tỷ lệ hủy phòng: {cancellationRate}%</p>
+      <p>Tỷ lệ chiếm dụng: {occupancyRate}%</p>
     </div>
   );
 };
 
-// Main Component
 function LearnGrid() {
+  const [data, setData] = useState({
+    stats: { totalBookings: 0, revenue: 0, newCustomers: 0 },
+    bookings: [],
+    rooms: [],
+    feedback: { newFeedbackCount: 0 },
+    notifications: { newNotificationCount: 0 },
+    additionalStats: { cancellationRate: 0, occupancyRate: 0 },
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [stats, bookings, rooms, feedback, notifications, additionalStats] = await Promise.all([
+          getStats(),
+          getBookings(),
+          getRooms(),
+          getFeedback(),
+          getNotifications(),
+          getAdditionalStats(),
+        ]);
+
+        setData({ stats, bookings, rooms, feedback, notifications, additionalStats });
+      } catch (error) {
+        console.error('Lỗi khi tải dữ liệu:', error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log('Dữ liệu sau khi fetch:', data);
+
+  if (loading) return <p>Đang tải dữ liệu...</p>;
+
   return (
     <div className="dashboard">
       <main className="dashboard-main">
         <Row gutter={[20, 25]}>
           <Col xxl={8} xl={8} lg={8} md={12} sm={24} xs={24}>
-            <StatsCard title="Tổng đặt phòng" value="150" icon="📋" />
+            <StatsCard title="Tổng đặt phòng" value={data.stats.totalBookings} icon="📋" />
           </Col>
           <Col xxl={8} xl={8} lg={8} md={12} sm={24} xs={24}>
-            <StatsCard title="Doanh thu" value="$12,500" icon="💰" />
+            <StatsCard title="Doanh thu" value={`$${data.stats.revenue}`} icon="💰" />
           </Col>
           <Col xxl={8} xl={8} lg={8} md={12} sm={24} xs={24}>
-            <StatsCard title="Khách hàng mới" value="30" icon="👥" />
+            <StatsCard title="Khách hàng mới" value={data.stats.newCustomers} icon="👥" />
           </Col>
           <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
             <div className="col box-5">
-              <MultiLine />
+              <MultiLine data={data.bookings} />
             </div>
           </Col>
           <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
             <div className="col box-6">
-              <DemoRadar />
+              <DemoRadar data={data.bookings} />
             </div>
           </Col>
           <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
-            <AvailableRooms />
+            <AvailableRooms rooms={data.rooms} />
           </Col>
           <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
-            <BookingTable />
+            <BookingTable bookings={data.bookings} />
           </Col>
           <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
-            <FeedbackSummary />
+            <FeedbackSummary feedbackCount={data.feedback.newFeedbackCount} />
           </Col>
           <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
-            <Notifications />
+            <Notifications notificationCount={data.notifications.newNotificationCount} />
           </Col>
           <Col xxl={8} xl={8} lg={8} md={24} sm={24} xs={24}>
-            <AdditionalStats />
+            <AdditionalStats
+              cancellationRate={data.additionalStats.cancellationRate}
+              occupancyRate={data.additionalStats.occupancyRate}
+            />
           </Col>
         </Row>
       </main>

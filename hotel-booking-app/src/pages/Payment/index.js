@@ -4,6 +4,7 @@ import { Button, Card, Typography, Row, Col, Form, Input, Checkbox, Alert } from
 import { format } from 'date-fns';
 import { getHotelByID } from '../../Service/HotelService';
 import './Payment.scss';
+import { bookRoom } from '../../Service/BookRoomService';
 
 
 const { Text } = Typography;
@@ -29,6 +30,14 @@ function Payment() {
         : 'Không xác định';
 
     const handlePayment = async (values) => {
+
+        const fetchAPI = async (option) => {
+            const response = await bookRoom(option);
+            if(response) {
+                alert("đặt phòng thành công")
+            }
+        }
+
         if (!agreePolicy) {
             setError('Vui lòng đồng ý với các điều khoản và chính sách.');
             return;
@@ -38,7 +47,7 @@ function Payment() {
         setIsLoading(true);
         try {
             console.log('Thông tin thanh toán:', { ...bookingData, ...values });
-            alert('Thanh toán thành công!');
+            fetchAPI({ ...bookingData, ...values });
             navigate('/confirmation', { state: { bookingData, guestInfo: values } });
         } catch (error) {
             setError('Thanh toán thất bại. Vui lòng thử lại.');
@@ -75,8 +84,8 @@ function Payment() {
 
     return (
         <>
-            <header className='header'><h1>HotelBooking.com</h1></header>
-            <main className='main'>
+            <header className='header-payment'><h1>HotelBooking.com</h1></header>
+            <main className='main-payment'>
                 <Row className='row-container'>
                     <Col span={24} className='title'>
                         <h1>Thanh Toán Đặt Phòng</h1>
@@ -179,7 +188,7 @@ function Payment() {
                     </Col>
                 </Row>
             </main>
-            <footer className='footer'>2025 copyright @Nhom5</footer>
+            <footer className='footer-payment'>2025 copyright @Nhom5</footer>
         </>
     );
 }

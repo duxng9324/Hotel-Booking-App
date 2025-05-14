@@ -17,7 +17,7 @@
       "address": "88 Đường Biển, Đà Nẵng, Việt Nam",
       "linkMap": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30672.591848580912!2d108.18774189520273!3d16.061650291516617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142198f25e0472b%3A0x19c071546f8c82cc!2sSeahorse%20Signature%20By%20Haviland!5e0!3m2!1svi!2s!4v1743769098886!5m2!1svi!2s",
       "description": "Khách sạn Sunrise Ocean tọa lạc ngay trung tâm thành phố, chỉ cách bãi biển vài bước chân, mang đến không gian kiến trúc hiện đại, sang trọng cùng tầm nhìn hướng biển tuyệt đẹp. Với nhiều hạng phòng từ Standard, Deluxe đến Suite, mỗi phòng được thiết kế tinh tế, thoáng đãng và trang bị đầy đủ tiện nghi như điều hòa, TV màn hình phẳng, minibar, két an toàn cá nhân và Wi‑Fi tốc độ cao, bạn sẽ có trải nghiệm nghỉ dưỡng thoải mái và đẳng cấp. Khách sạn còn sở hữu hồ bơi ngoài trời, phòng gym & spa, nhà hàng phục vụ ẩm thực địa phương và quốc tế, quầy bar trên tầng thượng cùng dịch vụ phòng 24/7 và đưa đón sân bay (có phụ phí). Đội ngũ nhân viên thân thiện, chuyên nghiệp luôn sẵn sàng hỗ trợ check‑in/check‑out nhanh chóng, tư vấn và đặt tour tham quan cho khách. Đặc biệt, bạn sẽ được hưởng ưu đãi giảm 10% khi đặt phòng trước 30 ngày và miễn phí bữa sáng buffet cho trẻ em dưới 6 tuổi, cùng nhiều combo nghỉ dưỡng + spa tiết kiệm.",
-      "rate": 5.0,
+      "rate": 5,
       "checkInTime": "14:00",
       "checkOutTime": "12:00",
       "service": [
@@ -48,30 +48,36 @@
           "quantityBed": 1,
           "quantityPeople": 2,
           "roomArea": 45,
-          "price": 1450000,
+          "price": 1250000,
           "availableRooms": 5,
           "amenities": [
             {
-              "id": "111abc-room1-amenity1",
+              "id": "amenity-1747218568156-Ban công",
               "name": "Ban công",
               "roomTypeId": "111abc-room1"
             },
             {
-              "id": "111abc-room1-amenity2",
+              "id": "amenity-1747218568157-View biển",
               "name": "View biển",
               "roomTypeId": "111abc-room1"
             },
             {
-              "id": "111abc-room1-amenity3",
+              "id": "amenity-1747218568157-TV thông minh",
               "name": "TV thông minh",
               "roomTypeId": "111abc-room1"
             },
             {
-              "id": "111abc-room1-amenity4",
+              "id": "amenity-1747218568157-Máy pha cà phê",
               "name": "Máy pha cà phê",
               "roomTypeId": "111abc-room1"
+            },
+            {
+              "id": "amenity-1747218568157-Bồn tắm",
+              "name": "Bồn tắm",
+              "roomTypeId": "111abc-room1"
             }
-          ]
+          ],
+          "hotelId": "111abc"
         },
         {
           "id": "111abc-room2",
@@ -103,6 +109,58 @@
               "roomTypeId": "111abc-room2"
             }
           ]
+        },
+        {
+          "id": "111abc-1747216679416",
+          "name": "Phòng chủ tịch",
+          "quantityBed": 1,
+          "quantityPeople": 2,
+          "roomArea": 150,
+          "price": 25000000,
+          "availableRooms": 1,
+          "amenities": [
+            {
+              "id": "amenity-1747216679416-amenity8",
+              "name": "Tủ lạnh mini",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity7",
+              "name": "Máy lạnh",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity6",
+              "name": "Wi-Fi tốc độ cao",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity5",
+              "name": "Bồn tắm",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity4",
+              "name": "Máy pha cà phê",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity3",
+              "name": "TV thông minh",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity2",
+              "name": "View biển",
+              "roomTypeId": "111abc-1747216679416"
+            },
+            {
+              "id": "amenity-1747216679416-amenity1",
+              "name": "Ban công",
+              "roomTypeId": "111abc-1747216679416"
+            }
+          ],
+          "hotelId": "111abc"
         }
       ]
     },
@@ -338,7 +396,7 @@
       "address": "22 Phố Cổ, Hội An, Quảng Nam, Việt Nam",
       "linkMap": "https://maps.app.goo.gl/example19",
       "description": "Nhà nghỉ mang phong cách cổ kính, gần khu phố cổ.",
-      "rate": 3.0,
+      "rate": 3,
       "checkInTime": "14:00",
       "checkOutTime": "12:00",
       "images": [],
@@ -512,7 +570,98 @@
       ]
     }
   ],
-  "book": [
-    {}
-  ]
+  "bookings": [
+    {
+      "id": "f550",
+      "roomId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "01/05/2025",
+        "03/05/2025"
+      ],
+      "fullName": "Dũng đẹp trai",
+      "email": "ongdungdz@gmail.com",
+      "phone": "0343389956",
+      "status": "Confirmed"
+    },
+    {
+      "id": "a5e9",
+      "roomId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "01/05/2025",
+        "10/05/2025"
+      ],
+      "fullName": "Dũng đẹp trai",
+      "email": "duxng9324@gmail.com",
+      "phone": "0343389956",
+      "status": "Pending"
+    },
+    {
+      "id": "7db5",
+      "roomId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "01/05/2025",
+        "03/05/2025"
+      ],
+      "fullName": "Dũng đẹp trai",
+      "email": "duxng9324@gmail.com",
+      "phone": "0343389956"
+    }
+  ],
+  "stats": {
+    "totalBookings": 2,
+    "revenue": 14950000,
+    "newCustomers": 1
+  },
+  "rooms": [
+    {
+      "id": 101,
+      "type": "Phòng Ocean View",
+      "status": "Available",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1"
+    },
+    {
+      "id": 102,
+      "type": "Phòng ABc View",
+      "status": "Available",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room2"
+    },
+    {
+      "id": 103,
+      "type": "Phòng chủ tịch",
+      "status": "Available",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-1747216679416"
+    }
+  ],
+  "feedback": {
+    "newFeedbackCount": 5,
+    "feedbacks": [
+      {
+        "id": 1,
+        "customer": "Alice Brown",
+        "comment": "Dịch vụ rất tốt!",
+        "date": "2025-05-13"
+      }
+    ]
+  },
+  "notifications": {
+    "newNotificationCount": 3,
+    "notifications": [
+      {
+        "id": 1,
+        "message": "Phòng 101 đã được đặt.",
+        "date": "2025-05-14T15:00:00+07:00",
+        "read": false
+      }
+    ]
+  },
+  "additionalStats": {
+    "cancellationRate": 10,
+    "occupancyRate": 75
+  }
 }

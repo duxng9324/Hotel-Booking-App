@@ -1,4 +1,4 @@
-import { get } from '../utils/request'
+import { get, post } from '../utils/request'
 
 export const getHotels = async () =>{
     return await get(`hotels`);
@@ -10,5 +10,9 @@ export const getHotelByID = async (id) =>{
 
 export const getRating = async () =>{
     return await get(`hotels`);
+}
+
+export const createHotel = async (option) => {
+    return await post(`hotels`, option);
 }
 
