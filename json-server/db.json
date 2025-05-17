@@ -7,6 +7,14 @@
       "password": "1234",
       "admin": true,
       "token": "dfhjkjgdsdgjkhfdsdfhjkl"
+    },
+    {
+      "fullname": "user",
+      "email": "user@gmail.com",
+      "phone": "1234567890",
+      "password": "user",
+      "admin": false,
+      "token": "fgjkhfdfhjkjgfhjjhfghjkhgfgjkjhgf"
     }
   ],
   "hotels": [
@@ -572,96 +580,1309 @@
   ],
   "bookings": [
     {
-      "id": "f550",
+      "id": "id000",
       "hotelId": "111abc",
       "roomTypeId": "111abc-room1",
       "date": [
-        "01/05/2025",
-        "03/05/2025"
+        "11/02/2025",
+        "15/02/2025"
       ],
-      "fullName": "Dũng đẹp trai",
-      "email": "ongdungdz@gmail.com",
-      "phone": "0343389956",
-      "status": "Confirmed"
-    },
-    {
-      "id": "a5e9",
-      "hotelId": "111abc",
-      "roomTypeId": "111abc-room1",
-      "date": [
-        "01/05/2025",
-        "10/05/2025"
-      ],
-      "fullName": "Dũng đẹp trai",
-      "email": "duxng9324@gmail.com",
-      "phone": "0343389956",
+      "fullName": "Phạm Thành Bình",
+      "email": "user0@gmail.com",
+      "phone": "0463469528",
       "status": "Pending"
     },
     {
-      "id": "7db5",
+      "id": "id001",
       "hotelId": "111abc",
       "roomTypeId": "111abc-room1",
       "date": [
-        "01/05/2025",
-        "03/05/2025"
+        "03/04/2025",
+        "04/04/2025"
       ],
-      "fullName": "Dũng đẹp trai",
-      "email": "duxng9324@gmail.com",
-      "phone": "0343389956"
+      "fullName": "Trần Thanh Lan",
+      "email": "user1@gmail.com",
+      "phone": "0885268777",
+      "status": "Pending"
+    },
+    {
+      "id": "id002",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "22/05/2025",
+        "23/05/2025"
+      ],
+      "fullName": "Bùi Thu Cường",
+      "email": "user2@gmail.com",
+      "phone": "0905720206",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id003",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "12/05/2025",
+        "17/05/2025"
+      ],
+      "fullName": "Nguyễn Xuân An",
+      "email": "user3@gmail.com",
+      "phone": "0338710156",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id004",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "18/04/2025",
+        "20/04/2025"
+      ],
+      "fullName": "Bùi Minh Cường",
+      "email": "user4@gmail.com",
+      "phone": "0219971413",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id005",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "15/02/2025",
+        "16/02/2025"
+      ],
+      "fullName": "Phạm Đức Phong",
+      "email": "user5@gmail.com",
+      "phone": "0908318910",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id006",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/05/2025",
+        "23/05/2025"
+      ],
+      "fullName": "Phạm Thu Phong",
+      "email": "user6@gmail.com",
+      "phone": "0572736472",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id007",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/01/2025",
+        "10/01/2025"
+      ],
+      "fullName": "Ngô Thu Dũng",
+      "email": "user7@gmail.com",
+      "phone": "0845837811",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id008",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "09/01/2025",
+        "12/01/2025"
+      ],
+      "fullName": "Ngô Minh Lan",
+      "email": "user8@gmail.com",
+      "phone": "0529224739",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id009",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/04/2025",
+        "12/04/2025"
+      ],
+      "fullName": "Ngô Xuân Phong",
+      "email": "user9@gmail.com",
+      "phone": "0874634279",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id010",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "27/03/2025",
+        "28/03/2025"
+      ],
+      "fullName": "Đỗ Thị Trang",
+      "email": "user10@gmail.com",
+      "phone": "0930453749",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id011",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "13/03/2025",
+        "17/03/2025"
+      ],
+      "fullName": "Phạm Văn Trang",
+      "email": "user11@gmail.com",
+      "phone": "0959666897",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id012",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/05/2025",
+        "08/05/2025"
+      ],
+      "fullName": "Phạm Minh Cường",
+      "email": "user12@gmail.com",
+      "phone": "0902920901",
+      "status": "Pending"
+    },
+    {
+      "id": "id013",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "23/04/2025",
+        "27/04/2025"
+      ],
+      "fullName": "Lê Thị Hạnh",
+      "email": "user13@gmail.com",
+      "phone": "0522500272",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id014",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/03/2025",
+        "13/03/2025"
+      ],
+      "fullName": "Bùi Xuân Trang",
+      "email": "user14@gmail.com",
+      "phone": "0990534692",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id015",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "23/04/2025",
+        "27/04/2025"
+      ],
+      "fullName": "Lê Đức Lan",
+      "email": "user15@gmail.com",
+      "phone": "0383162479",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id016",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "12/01/2025",
+        "13/01/2025"
+      ],
+      "fullName": "Đặng Đức Lan",
+      "email": "user16@gmail.com",
+      "phone": "0393321658",
+      "status": "Pending"
+    },
+    {
+      "id": "id017",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "05/03/2025",
+        "06/03/2025"
+      ],
+      "fullName": "Vũ Đức Trang",
+      "email": "user17@gmail.com",
+      "phone": "0898280853",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id018",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "12/02/2025",
+        "13/02/2025"
+      ],
+      "fullName": "Ngô Quỳnh Hạnh",
+      "email": "user18@gmail.com",
+      "phone": "0122047641",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id019",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "27/05/2025",
+        "28/05/2025"
+      ],
+      "fullName": "Bùi Hữu Bình",
+      "email": "user19@gmail.com",
+      "phone": "0500068191",
+      "status": "Pending"
+    },
+    {
+      "id": "id020",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/02/2025",
+        "24/02/2025"
+      ],
+      "fullName": "Lê Thanh An",
+      "email": "user20@gmail.com",
+      "phone": "0980656603",
+      "status": "Pending"
+    },
+    {
+      "id": "id021",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "10/02/2025",
+        "11/02/2025"
+      ],
+      "fullName": "Ngô Xuân An",
+      "email": "user21@gmail.com",
+      "phone": "0602050630",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id022",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "20/02/2025",
+        "23/02/2025"
+      ],
+      "fullName": "Phạm Thành Lan",
+      "email": "user22@gmail.com",
+      "phone": "0941446341",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id023",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "14/02/2025",
+        "16/02/2025"
+      ],
+      "fullName": "Phạm Thành Dũng",
+      "email": "user23@gmail.com",
+      "phone": "0368142953",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id024",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "22/01/2025",
+        "24/01/2025"
+      ],
+      "fullName": "Phạm Thu Phong",
+      "email": "user24@gmail.com",
+      "phone": "0622047681",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id025",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "02/01/2025",
+        "05/01/2025"
+      ],
+      "fullName": "Đặng Xuân Dũng",
+      "email": "user25@gmail.com",
+      "phone": "0143358634",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id026",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "19/02/2025",
+        "20/02/2025"
+      ],
+      "fullName": "Bùi Thu Cường",
+      "email": "user26@gmail.com",
+      "phone": "0930251640",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id027",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/01/2025",
+        "10/01/2025"
+      ],
+      "fullName": "Bùi Thanh Bình",
+      "email": "user27@gmail.com",
+      "phone": "0601125327",
+      "status": "Pending"
+    },
+    {
+      "id": "id028",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "23/05/2025",
+        "27/05/2025"
+      ],
+      "fullName": "Nguyễn Thành Linh",
+      "email": "user28@gmail.com",
+      "phone": "0361105355",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id029",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "16/03/2025",
+        "18/03/2025"
+      ],
+      "fullName": "Bùi Quỳnh An",
+      "email": "user29@gmail.com",
+      "phone": "0264457960",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id030",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "24/02/2025",
+        "25/02/2025"
+      ],
+      "fullName": "Phạm Thành Phong",
+      "email": "user30@gmail.com",
+      "phone": "0513373523",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id031",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "08/03/2025",
+        "12/03/2025"
+      ],
+      "fullName": "Đỗ Thanh Cường",
+      "email": "user31@gmail.com",
+      "phone": "0137234135",
+      "status": "Pending"
+    },
+    {
+      "id": "id032",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "19/05/2025",
+        "23/05/2025"
+      ],
+      "fullName": "Đặng Xuân Trang",
+      "email": "user32@gmail.com",
+      "phone": "0216467417",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id033",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "26/01/2025",
+        "28/01/2025"
+      ],
+      "fullName": "Đỗ Thành Phong",
+      "email": "user33@gmail.com",
+      "phone": "0926605795",
+      "status": "Pending"
+    },
+    {
+      "id": "id034",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/03/2025",
+        "22/03/2025"
+      ],
+      "fullName": "Hoàng Thị Trang",
+      "email": "user34@gmail.com",
+      "phone": "0627536888",
+      "status": "Pending"
+    },
+    {
+      "id": "id035",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "12/04/2025",
+        "15/04/2025"
+      ],
+      "fullName": "Đặng Thị Trang",
+      "email": "user35@gmail.com",
+      "phone": "0324176086",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id036",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "27/01/2025",
+        "28/01/2025"
+      ],
+      "fullName": "Vũ Quỳnh Bình",
+      "email": "user36@gmail.com",
+      "phone": "0186035676",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id037",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "10/04/2025",
+        "12/04/2025"
+      ],
+      "fullName": "Phạm Xuân Hạnh",
+      "email": "user37@gmail.com",
+      "phone": "0771988874",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id038",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "15/03/2025",
+        "18/03/2025"
+      ],
+      "fullName": "Nguyễn Thu Trang",
+      "email": "user38@gmail.com",
+      "phone": "0917691365",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id039",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "17/03/2025",
+        "19/03/2025"
+      ],
+      "fullName": "Ngô Thu Dũng",
+      "email": "user39@gmail.com",
+      "phone": "0332359212",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id040",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/02/2025",
+        "08/02/2025"
+      ],
+      "fullName": "Trần Hữu Lan",
+      "email": "user40@gmail.com",
+      "phone": "0103283742",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id041",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "23/04/2025",
+        "27/04/2025"
+      ],
+      "fullName": "Ngô Thành Huy",
+      "email": "user41@gmail.com",
+      "phone": "0123155572",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id042",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "09/02/2025",
+        "10/02/2025"
+      ],
+      "fullName": "Hoàng Thành Bình",
+      "email": "user42@gmail.com",
+      "phone": "0741046611",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id043",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "17/02/2025",
+        "20/02/2025"
+      ],
+      "fullName": "Đặng Hữu Bình",
+      "email": "user43@gmail.com",
+      "phone": "0857044731",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id044",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "04/01/2025",
+        "09/01/2025"
+      ],
+      "fullName": "Đỗ Thị Cường",
+      "email": "user44@gmail.com",
+      "phone": "0602535092",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id045",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/04/2025",
+        "15/04/2025"
+      ],
+      "fullName": "Ngô Minh Bình",
+      "email": "user45@gmail.com",
+      "phone": "0708143328",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id046",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/03/2025",
+        "08/03/2025"
+      ],
+      "fullName": "Đặng Thu Lan",
+      "email": "user46@gmail.com",
+      "phone": "0902368990",
+      "status": "Pending"
+    },
+    {
+      "id": "id047",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "25/04/2025",
+        "28/04/2025"
+      ],
+      "fullName": "Nguyễn Đức Hạnh",
+      "email": "user47@gmail.com",
+      "phone": "0325662793",
+      "status": "Pending"
+    },
+    {
+      "id": "id048",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "09/03/2025",
+        "13/03/2025"
+      ],
+      "fullName": "Nguyễn Thu Linh",
+      "email": "user48@gmail.com",
+      "phone": "0608818694",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id049",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/01/2025",
+        "12/01/2025"
+      ],
+      "fullName": "Đặng Thanh Linh",
+      "email": "user49@gmail.com",
+      "phone": "0788009291",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id050",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "17/01/2025",
+        "20/01/2025"
+      ],
+      "fullName": "Phạm Thanh Bình",
+      "email": "user50@gmail.com",
+      "phone": "0329650365",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id051",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "22/02/2025",
+        "26/02/2025"
+      ],
+      "fullName": "Nguyễn Xuân Hạnh",
+      "email": "user51@gmail.com",
+      "phone": "0106290717",
+      "status": "Pending"
+    },
+    {
+      "id": "id052",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "03/05/2025",
+        "04/05/2025"
+      ],
+      "fullName": "Vũ Thị Cường",
+      "email": "user52@gmail.com",
+      "phone": "0604114957",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id053",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "19/04/2025",
+        "21/04/2025"
+      ],
+      "fullName": "Vũ Xuân Lan",
+      "email": "user53@gmail.com",
+      "phone": "0415171665",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id054",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/04/2025",
+        "09/04/2025"
+      ],
+      "fullName": "Đặng Đức Linh",
+      "email": "user54@gmail.com",
+      "phone": "0310050535",
+      "status": "Pending"
+    },
+    {
+      "id": "id055",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/03/2025",
+        "23/03/2025"
+      ],
+      "fullName": "Lê Quỳnh Dũng",
+      "email": "user55@gmail.com",
+      "phone": "0446580671",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id056",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "03/05/2025",
+        "04/05/2025"
+      ],
+      "fullName": "Ngô Minh Hạnh",
+      "email": "user56@gmail.com",
+      "phone": "0313181455",
+      "status": "Pending"
+    },
+    {
+      "id": "id057",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "27/02/2025",
+        "28/02/2025"
+      ],
+      "fullName": "Đặng Xuân Dũng",
+      "email": "user57@gmail.com",
+      "phone": "0489938972",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id058",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "04/02/2025",
+        "05/02/2025"
+      ],
+      "fullName": "Ngô Hữu Dũng",
+      "email": "user58@gmail.com",
+      "phone": "0301010138",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id059",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "12/05/2025",
+        "15/05/2025"
+      ],
+      "fullName": "Đỗ Thành An",
+      "email": "user59@gmail.com",
+      "phone": "0392390594",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id060",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/01/2025",
+        "15/01/2025"
+      ],
+      "fullName": "Đỗ Đức Dũng",
+      "email": "user60@gmail.com",
+      "phone": "0827904118",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id061",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "24/02/2025",
+        "25/02/2025"
+      ],
+      "fullName": "Đặng Minh Cường",
+      "email": "user61@gmail.com",
+      "phone": "0362227744",
+      "status": "Pending"
+    },
+    {
+      "id": "id062",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/03/2025",
+        "26/03/2025"
+      ],
+      "fullName": "Hoàng Quỳnh Linh",
+      "email": "user62@gmail.com",
+      "phone": "0848232482",
+      "status": "Pending"
+    },
+    {
+      "id": "id063",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "01/02/2025",
+        "06/02/2025"
+      ],
+      "fullName": "Nguyễn Minh Cường",
+      "email": "user63@gmail.com",
+      "phone": "0752870238",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id064",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "17/05/2025",
+        "18/05/2025"
+      ],
+      "fullName": "Trần Đức Bình",
+      "email": "user64@gmail.com",
+      "phone": "0681156795",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id065",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "05/05/2025",
+        "10/05/2025"
+      ],
+      "fullName": "Vũ Thu Hạnh",
+      "email": "user65@gmail.com",
+      "phone": "0307038375",
+      "status": "Pending"
+    },
+    {
+      "id": "id066",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/03/2025",
+        "10/03/2025"
+      ],
+      "fullName": "Phạm Đức Trang",
+      "email": "user66@gmail.com",
+      "phone": "0603309503",
+      "status": "Pending"
+    },
+    {
+      "id": "id067",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/03/2025",
+        "12/03/2025"
+      ],
+      "fullName": "Nguyễn Hữu Linh",
+      "email": "user67@gmail.com",
+      "phone": "0941756244",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id068",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "18/04/2025",
+        "23/04/2025"
+      ],
+      "fullName": "Nguyễn Văn Lan",
+      "email": "user68@gmail.com",
+      "phone": "0901118979",
+      "status": "Pending"
+    },
+    {
+      "id": "id069",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/01/2025",
+        "15/01/2025"
+      ],
+      "fullName": "Phạm Xuân Linh",
+      "email": "user69@gmail.com",
+      "phone": "0758071347",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id070",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/01/2025",
+        "24/01/2025"
+      ],
+      "fullName": "Hoàng Thị Huy",
+      "email": "user70@gmail.com",
+      "phone": "0267655921",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id071",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "02/05/2025",
+        "04/05/2025"
+      ],
+      "fullName": "Nguyễn Thành Phong",
+      "email": "user71@gmail.com",
+      "phone": "0352563067",
+      "status": "Pending"
+    },
+    {
+      "id": "id072",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "03/02/2025",
+        "08/02/2025"
+      ],
+      "fullName": "Nguyễn Thị Bình",
+      "email": "user72@gmail.com",
+      "phone": "0511873645",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id073",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "24/01/2025",
+        "28/01/2025"
+      ],
+      "fullName": "Đỗ Văn Bình",
+      "email": "user73@gmail.com",
+      "phone": "0558275800",
+      "status": "Pending"
+    },
+    {
+      "id": "id074",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "05/03/2025",
+        "10/03/2025"
+      ],
+      "fullName": "Hoàng Thanh Lan",
+      "email": "user74@gmail.com",
+      "phone": "0815033489",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id075",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "10/01/2025",
+        "14/01/2025"
+      ],
+      "fullName": "Lê Đức Bình",
+      "email": "user75@gmail.com",
+      "phone": "0893836984",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id076",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "08/01/2025",
+        "09/01/2025"
+      ],
+      "fullName": "Nguyễn Thị Lan",
+      "email": "user76@gmail.com",
+      "phone": "0299308032",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id077",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "05/03/2025",
+        "06/03/2025"
+      ],
+      "fullName": "Vũ Thu Trang",
+      "email": "user77@gmail.com",
+      "phone": "0557714608",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id078",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "17/03/2025",
+        "20/03/2025"
+      ],
+      "fullName": "Vũ Quỳnh Trang",
+      "email": "user78@gmail.com",
+      "phone": "0647405122",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id079",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "15/02/2025",
+        "19/02/2025"
+      ],
+      "fullName": "Hoàng Thanh Linh",
+      "email": "user79@gmail.com",
+      "phone": "0819797804",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id080",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/05/2025",
+        "12/05/2025"
+      ],
+      "fullName": "Phạm Thu Dũng",
+      "email": "user80@gmail.com",
+      "phone": "0267140130",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id081",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "15/03/2025",
+        "20/03/2025"
+      ],
+      "fullName": "Bùi Thành Trang",
+      "email": "user81@gmail.com",
+      "phone": "0102722172",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id082",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/02/2025",
+        "09/02/2025"
+      ],
+      "fullName": "Đỗ Minh An",
+      "email": "user82@gmail.com",
+      "phone": "0143871421",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id083",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "04/05/2025",
+        "07/05/2025"
+      ],
+      "fullName": "Trần Hữu Linh",
+      "email": "user83@gmail.com",
+      "phone": "0399859265",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id084",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "18/04/2025",
+        "23/04/2025"
+      ],
+      "fullName": "Nguyễn Minh Trang",
+      "email": "user84@gmail.com",
+      "phone": "0340601284",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id085",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "10/04/2025",
+        "12/04/2025"
+      ],
+      "fullName": "Vũ Thị Huy",
+      "email": "user85@gmail.com",
+      "phone": "0185028670",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id086",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "23/05/2025",
+        "24/05/2025"
+      ],
+      "fullName": "Nguyễn Thị Lan",
+      "email": "user86@gmail.com",
+      "phone": "0254623501",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id087",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "14/05/2025",
+        "18/05/2025"
+      ],
+      "fullName": "Đỗ Thanh Bình",
+      "email": "user87@gmail.com",
+      "phone": "0412946528",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id088",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "21/03/2025",
+        "25/03/2025"
+      ],
+      "fullName": "Đặng Hữu Huy",
+      "email": "user88@gmail.com",
+      "phone": "0346087164",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id089",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "14/03/2025",
+        "19/03/2025"
+      ],
+      "fullName": "Phạm Thành An",
+      "email": "user89@gmail.com",
+      "phone": "0853498923",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id090",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "11/04/2025",
+        "14/04/2025"
+      ],
+      "fullName": "Trần Thu Trang",
+      "email": "user90@gmail.com",
+      "phone": "0620813846",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id091",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/04/2025",
+        "08/04/2025"
+      ],
+      "fullName": "Ngô Xuân Cường",
+      "email": "user91@gmail.com",
+      "phone": "0890074507",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id092",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "15/01/2025",
+        "19/01/2025"
+      ],
+      "fullName": "Ngô Xuân Bình",
+      "email": "user92@gmail.com",
+      "phone": "0160180448",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id093",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "02/03/2025",
+        "04/03/2025"
+      ],
+      "fullName": "Ngô Thành An",
+      "email": "user93@gmail.com",
+      "phone": "0889065256",
+      "status": "Pending"
+    },
+    {
+      "id": "id094",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "16/05/2025",
+        "17/05/2025"
+      ],
+      "fullName": "Nguyễn Thanh Cường",
+      "email": "user94@gmail.com",
+      "phone": "0970466048",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id095",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "08/01/2025",
+        "10/01/2025"
+      ],
+      "fullName": "Trần Xuân Hạnh",
+      "email": "user95@gmail.com",
+      "phone": "0261273968",
+      "status": "Pending"
+    },
+    {
+      "id": "id096",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "14/05/2025",
+        "18/05/2025"
+      ],
+      "fullName": "Lê Thị Dũng",
+      "email": "user96@gmail.com",
+      "phone": "0391123217",
+      "status": "Confirmed"
+    },
+    {
+      "id": "id097",
+      "hotelId": "111abc",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "14/05/2025",
+        "19/05/2025"
+      ],
+      "fullName": "Trần Xuân Lan",
+      "email": "user97@gmail.com",
+      "phone": "0785709600",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id098",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "06/01/2025",
+        "11/01/2025"
+      ],
+      "fullName": "Phạm Thanh Hạnh",
+      "email": "user98@gmail.com",
+      "phone": "0935133375",
+      "status": "Cancelled"
+    },
+    {
+      "id": "id099",
+      "hotelId": "222def",
+      "roomTypeId": "111abc-room1",
+      "date": [
+        "07/05/2025",
+        "10/05/2025"
+      ],
+      "fullName": "Ngô Văn Trang",
+      "email": "user99@gmail.com",
+      "phone": "0962108940",
+      "status": "Cancelled"
     }
   ],
   "stats": {
-    "totalBookings": 2,
-    "revenue": 14950000,
-    "newCustomers": 1
-  },
-  "rooms": [
-    {
-      "id": 101,
-      "type": "Phòng Ocean View",
-      "status": "Available",
-      "hotelId": "111abc",
-      "roomTypeId": "111abc-room1"
-    },
-    {
-      "id": 102,
-      "type": "Phòng ABc View",
-      "status": "Available",
-      "hotelId": "111abc",
-      "roomTypeId": "111abc-room2"
-    },
-    {
-      "id": 103,
-      "type": "Phòng chủ tịch",
-      "status": "Available",
-      "hotelId": "111abc",
-      "roomTypeId": "111abc-1747216679416"
-    }
-  ],
-  "feedback": {
-    "newFeedbackCount": 5,
-    "feedbacks": [
-      {
-        "id": 1,
-        "customer": "Alice Brown",
-        "comment": "Dịch vụ rất tốt!",
-        "date": "2025-05-13"
-      }
-    ]
-  },
-  "notifications": {
-    "newNotificationCount": 3,
-    "notifications": [
-      {
-        "id": 1,
-        "message": "Phòng 101 đã được đặt.",
-        "date": "2025-05-14T15:00:00+07:00",
-        "read": false
-      }
-    ]
-  },
-  "additionalStats": {
-    "cancellationRate": 10,
-    "occupancyRate": 75
+    "totalBookings": 128,
+    "revenue": 49580000,
+    "newCustomers": 28
   }
 }
