@@ -45,7 +45,7 @@ function Detail() {
         if (time && selectedRoomTypeId) {
             const formattedDates = time.map(date => date.format("DD/MM/YYYY"));
             const bookingData = {
-                roomId: param.id,
+                bookings: param.id,
                 roomTypeId: selectedRoomTypeId,
                 date: formattedDates,
             };

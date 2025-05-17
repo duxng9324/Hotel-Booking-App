@@ -20,7 +20,7 @@ function Payment() {
 
     const bookingData = location.state?.bookingData;
 
-    const roomId = bookingData?.roomId?.trim();
+    const bookings = bookingData?.bookings?.trim();
     const roomTypeId = bookingData?.roomTypeId?.trim();
     const date = bookingData?.date;
     const currency = 'VND';
@@ -59,9 +59,9 @@ function Payment() {
 
     useEffect(() => {
         const fetchAPI = async () => {
-            if (!roomId) return;
+            if (!bookings) return;
             try {
-                const responseHotel = await getHotelByID(roomId);
+                const responseHotel = await getHotelByID(bookings);
                 setHotel(responseHotel);
             } catch (error) {
                 setError('Lỗi khi lấy thông tin khách sạn.');
@@ -70,7 +70,7 @@ function Payment() {
         };
 
         fetchAPI();
-    }, [roomId]);
+    }, [bookings]);
 
     if (!bookingData) {
         return (

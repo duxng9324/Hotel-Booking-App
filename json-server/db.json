@@ -573,7 +573,7 @@
   "bookings": [
     {
       "id": "f550",
-      "roomId": "111abc",
+      "hotelId": "111abc",
       "roomTypeId": "111abc-room1",
       "date": [
         "01/05/2025",
@@ -586,7 +586,7 @@
     },
     {
       "id": "a5e9",
-      "roomId": "111abc",
+      "hotelId": "111abc",
       "roomTypeId": "111abc-room1",
       "date": [
         "01/05/2025",
@@ -599,7 +599,7 @@
     },
     {
       "id": "7db5",
-      "roomId": "111abc",
+      "hotelId": "111abc",
       "roomTypeId": "111abc-room1",
       "date": [
         "01/05/2025",
